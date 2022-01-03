@@ -14,10 +14,12 @@ class MyRobot(wpilib.TimedRobot):
         self.right_trigger_axis = 5
 
     def teleopPeriodic(self):
-        """
-        Makes the motor spin. Right trigger -> 1, left trigger -> -0.2, 
-        x reduces the speed, y reduces the speed more, b reduces the speed even more, 
-        a reduces the speed the most
+        """ Makes a motor spin using the SPARK MAX motor controller
+
+        Holding down the right trigger makes the motor go forwards at full speed and holding down the left trigger makes
+        the motor go backwards at 20% speed. The speed set by holding down one of the triggers can then be modified by
+        holding a button down. Holding x reduces the speed to 80% of what was set by the trigger. Holding y reduces it
+        to 60%, b reduces it to 40%, and a reduces it to 20%.
         """
         if self.controller.getRawAxis(self.right_trigger_axis) > 0.95:
             self.running = 1
