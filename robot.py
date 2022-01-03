@@ -1,17 +1,21 @@
 import wpilib
+import config
 
 
 class MyRobot(wpilib.TimedRobot):
     def robotInit(self):
-        CONTROLLER_PORT = 0  # USB port the controller is connected to, usually 0
-        SPARK_MAX_CHANNEL = 1  # The channel the motor controller is on
+        CONTROLLER_PORT = config.gamepad_port
+        SPARK_MAX_CHANNEL = config.motor_controller_channel
+
+        self.LEFT_TRIGGER_AXIS = config.left_trigger_axis
+        self.RIGHT_TRIGGER_AXIS = config.right_trigger_axis
+        self.A_BUTTON_NUM = config.a_button_num
+        self.B_BUTTON_NUM = config.b_button_num
+        self.X_BUTTON_NUM = config.x_button_num
+        self.Y_BUTTON_NUM = config.y_button_num
         
         self.spark_max = wpilib.Spark(SPARK_MAX_CHANNEL)
         self.controller = wpilib.XboxController(CONTROLLER_PORT)
-
-        # Change these depending on the controller
-        self.left_trigger_axis = 2 
-        self.right_trigger_axis = 5
 
     def teleopPeriodic(self):
         """ Makes a motor spin using the SPARK MAX motor controller
@@ -21,9 +25,9 @@ class MyRobot(wpilib.TimedRobot):
         holding a button down. Holding x reduces the speed to 80% of what was set by the trigger. Holding y reduces it
         to 60%, b reduces it to 40%, and a reduces it to 20%.
         """
-        if self.controller.getRawAxis(self.right_trigger_axis) > 0.95:
+        if self.controller.getRawAxis(self.RIGHT_TRIGGER_AXIS) > 0.95:
             self.running = 1
-        elif self.controller.getRawAxis(self.left_trigger_axis) > 0.95:
+        elif self.controller.getRawAxis(self.LEFT_TRIGGER_AXIS) > 0.95:
             self.running = -0.2
         else:
             self.running = 0 
