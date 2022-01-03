@@ -73,3 +73,7 @@ buttons.
 
 If multiple buttons/axis are pressed/held, then backwards takes precendence over forwards, and lower speed multipliers 
 take precedence over higher ones.
+
+## Config
+You can configure what port your gamepad is on, which axis and buttons it uses, and what channel the SPARK MAX is on.
+Just change the values in config.py! Just note that button numbers start from 1 and not 0.
